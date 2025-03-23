@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Product Page
+    body 
+    h1= title 
+    div 
+        each product in products
+            .item-container 
+            h2.item-heading= product.title 
+            p.item-description= product.description
+            p.item-price= product.price
+            button.item-cart-btn ElNamer

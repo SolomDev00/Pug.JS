@@ -21,7 +21,9 @@ const productService = new ProductService(fakeProductsData);
 const productController = new ProductController(productService);
 
 // *** Products Routes
-app.get("/products", (_, res: Response) => res.render("products"));
+app.get("/products", (req: Request, res: Response) => {
+  productController.renderProductsList(req, res);
+});
 
 app.get("/api/products", (req: Request, res: Response) =>
   productController.getProducts(req, res)

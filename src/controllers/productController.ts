@@ -92,6 +92,13 @@ class ProductController {
       });
     }
   }
+
+  renderProductsList(req: Request, res: Response) {
+    res.render("products", {
+      title: "ElNamer Store",
+      products: this.productService.findAll(),
+    });
+  }
 }
 
 export default ProductController;
