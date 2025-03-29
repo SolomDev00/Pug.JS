@@ -26,7 +26,7 @@ app.get("/products", (req: Request, res: Response) => {
 });
 
 app.get("/products/:id", (req: Request, res: Response) => {
-  productController.renderProductsList(req, res);
+  productController.renderProductPage(req, res);
 });
 
 app.get("/api/products", (req: Request, res: Response) =>
