@@ -3,6 +3,7 @@ import { generateFakeProducts } from "./utils/data";
 import ProductController from "./controllers/productController";
 import ProductService from "./services/ProductService";
 import path from "path";
+import productsRouter from "./routes/products";
 
 const app = express();
 
@@ -29,25 +30,7 @@ app.get("/products/:id", (req: Request, res: Response) => {
   productController.renderProductPage(req, res);
 });
 
-app.get("/api/products", (req: Request, res: Response) =>
-  productController.getProducts(req, res)
-);
-
-app.get("/api/products/:id", (req: Request, res: Response) =>
-  productController.getProductById(req, res)
-);
-
-app.post("/api/products", (req: Request, res: Response) =>
-  productController.createProduct(req, res)
-);
-
-app.patch("/api/products/:id", (req: Request, res: Response) =>
-  productController.updateProduct(req, res)
-);
-
-app.delete("/api/products/:id", (req: Request, res: Response) =>
-  productController.deleteProduct(req, res)
-);
+app.use("/products", productsRouter);
 
 app.get("/", (_, res: Response) => res.render("index"));
 app.get("*", (_, res: Response) => res.render("notFound"));
