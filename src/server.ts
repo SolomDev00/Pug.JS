@@ -4,6 +4,7 @@ import ProductController from "./controllers/productController";
 import ProductService from "./services/ProductService";
 import path from "path";
 import productsRouter from "./routes/products";
+import ProductsViewController from "./controllers/productViewController";
 
 const app = express();
 
@@ -20,17 +21,14 @@ const fakeProductsData = generateFakeProducts();
 
 const productService = new ProductService(fakeProductsData);
 const productController = new ProductController(productService);
+const productsViewController = new ProductsViewController(productService);
 
 // *** Products Routes
-app.get("/products", (req: Request, res: Response) => {
-  productController.renderProductsList(req, res);
-});
+app.get("/products", productsViewController.renderProductsList);
 
-app.get("/products/:id", (req: Request, res: Response) => {
-  productController.renderProductPage(req, res);
-});
+app.get("/products/:id", productsViewController.renderProductPage);
 
-app.use("/products", productsRouter);
+app.use("/api/products", productsRouter);
 
 app.get("/", (_, res: Response) => res.render("index"));
 app.get("*", (_, res: Response) => res.render("notFound"));
