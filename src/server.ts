@@ -25,6 +25,10 @@ app.get("/products", (req: Request, res: Response) => {
   productController.renderProductsList(req, res);
 });
 
+app.get("/products/:id", (req: Request, res: Response) => {
+  productController.renderProductsList(req, res);
+});
+
 app.get("/api/products", (req: Request, res: Response) =>
   productController.getProducts(req, res)
 );

@@ -93,10 +93,18 @@ class ProductController {
     }
   }
 
-  renderProductsList(req: Request, res: Response) {
+  renderProductsList(_: Request, res: Response) {
     res.render("products", {
       title: "ElNamer Store",
       products: this.productService.findAll(),
+    });
+  }
+
+  renderProductPage(req: Request, res: Response) {
+    const productId = +req.params.id;
+
+    res.render("product", {
+      product: this.productService.getProductById(productId),
     });
   }
 }
