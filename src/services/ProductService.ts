@@ -4,7 +4,9 @@ type ProductBody = {
   title: string;
   price: number;
   description: string;
+  imageURL: string;
 };
+
 export default class ProductService {
   constructor(private products: Product[]) {
     this.products = products;

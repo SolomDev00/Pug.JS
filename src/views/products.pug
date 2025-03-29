@@ -4,13 +4,17 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Products Page
+        link(rel="stylesheet", href="/styles/style.css")
     body 
     h1= title 
-    div 
-        each product in products
-            .item-container 
-            a(href=`/products/${product.id}`) 
-             h2.item-heading= product.title 
-            p.item-description= product.description
-            p.item-price= product.price
-            button.item-cart-btn ElNamer
+    .flex.justfiy-center.items-center.w-full
+        .container.grid.grid-cols-3.gap-3.w-full
+            each product in products
+                .w-full.flex-shrink-0.relative.overflow-hidden.bg-orange-500.rounded-lg.shadow-lg
+                    img.relative.w-full.h-56(src=`${product.imageURL}` alt=product.title)
+                    .relative.text-white.px-6.mt-6.pb-6 
+                        span.block.opacity-75.-mb-1= product.title
+                        .flex.justify-between
+                            span.text-sm.line-clamp-3= product.description
+                            span.block.bg-white.rounded-full.text-orange-500.text-xs.font-bold.px-3.py-2.leading-none.flex.items-center= `$${product.price}`
+
