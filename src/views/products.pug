@@ -1,21 +1,16 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Products Page
-        link(rel="stylesheet", href="/styles/style.css")
-    body 
-    h1= title 
-    .flex.justfiy-center.items-center.w-full
-        .container.grid.grid-cols-3.gap-3.w-full
-            each product in products
-              a(href=`/products/${product.id}`) 
-                .w-full.flex-shrink-0.relative.overflow-hidden.bg-orange-500.rounded-lg.shadow-lg
-                    img.relative.w-full.h-56(src=`${product.imageURL}` alt=product.title)
-                    .relative.text-white.px-6.mt-6.pb-6 
-                        span.block.opacity-75.-mb-1= product.title
-                        .flex.justify-between
-                            span.text-sm.line-clamp-3= product.description
-                            span.block.bg-white.rounded-full.text-orange-500.text-xs.font-bold.px-3.py-2.leading-none.flex.items-center= `$${product.price}`
-    include components/_footer
+extends layout/_base
+block content 
+  .container 
+    .grid.gap-3(class='md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')
+      each product in products
+        .group.flex.w-full.flex-col.overflow-hidden.rounded-lg.border.border-gray-100.bg-white.shadow-md
+          a.relative.mx-3.mt-3.flex.h-60.overflow-hidden.rounded-xl(href=`/products/${product.id}`)
+            img.peer.absolute.top-0.right-0.h-full.w-full.object-cover(src=`${product.imageURL}`, alt='product image')
+          .mt-4.px-5.pb-5
+            a(href='#')
+              h5.text-xl.tracking-tight.text-slate-900= product.title
+            .mt-2.mb-5.flex.items-center.justify-between
+              p
+                span.text-3xl.font-bold.text-slate-900= `$${product.price}`
+                span.text-sm.text-slate-900.line-through= `$${product.price} + 42`
+            button.block.w-full.py-4.flex.items-center.justify-center.rounded-md.bg-slate-900.px-5.text-center.text-sm.font-medium.text-white.text-lg(href='#', class='hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300') Add to cart
